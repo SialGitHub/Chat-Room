@@ -14,6 +14,12 @@ router.get('/users/messages/list', requireAuth, currentUser,
   async ( req, res ) => {
   try {
     const messages = User.find({messages})
+    if (messages){
+      console.log('Messages were found')
+    }
+    else {
+      console.log('Messages were not found')
+    }
   }catch (error){
     console.log(error)
   }

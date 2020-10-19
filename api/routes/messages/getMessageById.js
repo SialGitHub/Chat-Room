@@ -9,7 +9,7 @@ const Message = require('../../models/MessageSchema');
 
 const router = express.Router()
 
-router.get('/users/messages/single', requireAuth, currentUser,
+router.get('/users/messages/:id', requireAuth, currentUser,
   async ( req, res ) => {
   try {
     const message = await Message.findOne({id});
