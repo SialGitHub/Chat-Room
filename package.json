@@ -1,0 +1,33 @@
+{
+  "name": "chat-room",
+  "version": "1.0.0",
+  "description": "chat-room service",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [],
+  "author": "Gill",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.9",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "dotenv": "^8.2.0",
+    "js-yaml": "^3.14.0",
+    "nodemon": "^2.0.5",
+    "swagger-ui-express": "^4.1.4"
+  }
+}
