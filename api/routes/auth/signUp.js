@@ -15,12 +15,12 @@ router.post('users/signup',
   body('email')
     .notEmpty()
     .isEmail()
-    .withMessage({ errorCode: '1', messageText: "Email must be valid "}),
+    .withMessage("Email must be valid "),
   body('password')
     .notEmpty()
     .trim()
     .isLength({ min: 8, max: 128})
-    .withMessage({ errorCode: '2', messageText: 'Password must be at least 8 characters' })
+    .withMessage('Password must be at least 8 characters')
 ], async (req, res) => {
   try{
     let {password} = req.body
@@ -28,13 +28,12 @@ router.post('users/signup',
 
     const existingUser = await User.findOne({email})
     if (existingUser){
-      throw new BadRequestError('Email in use', '3')
+      console.log('Email in use');
     }
     password = await Password.toHash(password)
     const user = new User({
       email,
       password,
-
     })
     await user.save()
 
@@ -49,7 +48,7 @@ router.post('users/signup',
 
     res.status(201).send(new RequestHandler(user))
   } catch (e) {
-    throw new BadRequestError(e.message, '-')
+    console.log(e.message)
   }
 })
 

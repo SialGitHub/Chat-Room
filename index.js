@@ -1,5 +1,4 @@
 import {signUpRouter} from "./api/routes/auth/signUp";
-console.log(signUpRouter);
 import {signInRouter} from "./api/routes/auth/signIn";
 import {signOutRouter} from "./api/routes/auth/signOut";
 
@@ -13,14 +12,14 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-const swaggerUi = require('swagger-ui-express')
-const jsyaml = require('js-yaml')
-const spec = fs.readFileSync('swagger.yaml', 'utf-8')
-const swaggerDocument = jsyaml.safeLoad(spec)
-
 const app = express();
+const defaultPort = 3000
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+app.use('/api-docs', swaggerUi.serve);
+app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 app.use(signUpRouter)
 app.use(signInRouter)
@@ -29,8 +28,6 @@ app.use(signOutRouter)
 app.use(createMessageRouter)
 app.use(getAllMessagesRouter)
 app.use(getMessageByIdRouter)
-
-module.exports = app
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -48,7 +45,9 @@ const start = async () => {
   }
 }
 start().then()
-app.listen(process.env.SERVER_PORT || 3000)
-
+const server = app.listen(process.env.SERVER_PORT || defaultPort)
+if(server){
+  console.log("Server started successfully on port " + process.env.SERVER_PORT || defaultPort)
+}
 
 

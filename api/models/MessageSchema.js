@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('./UserSchema');
-import uuid from 'uuid';
+const uuid = require('uuid');
 
 const messageSchema = new mongoose.Schema({
     id:{

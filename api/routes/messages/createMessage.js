@@ -1,3 +1,5 @@
+import {body} from "express-validator";
+
 const express = require('express')
 
 const RequestHandler = require('../../utils/requestHandler')

@@ -21,7 +21,7 @@ router.post('/users/signin',
       .trim()
       .isLength({ min: 8, max: 128 })
       .withMessage({ errorCode: '2', messageText: 'Password must be at least 8 characters long' })
-  ], validateRequest, async (req, res) => {
+  ], async (req, res) => {
     try {
       const { email, password } = req.body
 
