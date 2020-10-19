@@ -10,7 +10,7 @@ const User = require('../../models/UserSchema');
 
 const router = express.Router();
 
-router.post('users/signup',
+router.post('/users/signup',
   [
   body('email')
     .notEmpty()
@@ -23,8 +23,9 @@ router.post('users/signup',
     .withMessage('Password must be at least 8 characters')
 ], async (req, res) => {
   try{
-    let {password} = req.body
-    const {email} = req.body
+    let {password} = req.body.password
+    const {email} = req.body.email
+    console.log(req.body)
 
     const existingUser = await User.findOne({email})
     if (existingUser){
