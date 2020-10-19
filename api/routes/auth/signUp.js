@@ -23,29 +23,32 @@ router.post('/users/signup',
     .withMessage('Password must be at least 8 characters')
 ], async (req, res) => {
   try{
-    let {password} = req.body.password
-    const {email} = req.body.email
+    let password = req.body.password
+    const email = req.body.email
     console.log(req.body)
 
     const existingUser = await User.findOne({email})
     if (existingUser){
       console.log('Email in use');
     }
-    password = await Password.toHash(password)
+    // password = await Password.toHash(password)
     const user = new User({
       email,
       password,
     })
     await user.save()
+    console.log(user);
 
     const userJWT = jwt.sign({
       id: user.id,
       email: user.email
     }, process.env.JWT_KEY)
+    console.log(userJWT)
 
     req.session = {
       jwt: userJWT
     }
+    console.log(userJWT)
 
     res.status(201).send(new RequestHandler(user))
   } catch (e) {

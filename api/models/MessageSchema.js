@@ -1,22 +1,12 @@
 const mongoose = require('mongoose');
 const User = require('./UserSchema');
-const uuid = require('uuid');
 
 const messageSchema = new mongoose.Schema({
-    id:{
-      type: uuid
-    },
-    authorEmail: {
-      type: User,
-    },
-    text: {
-      type: String,
-      required: true
-    }
+    // authorEmail: {
+    //   type: User,
+    // },
+    text: String
 },
-  {
-    timestamps: true
-  },
   {
     toJSON:{
       transform(doc, ret) {

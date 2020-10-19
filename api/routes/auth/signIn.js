@@ -23,17 +23,18 @@ router.post('/users/signin',
       .withMessage({ errorCode: '2', messageText: 'Password must be at least 8 characters long' })
   ], async (req, res) => {
     try {
-      const { email, password } = req.body
+      let password = req.body.password
+      const email = req.body.email
 
       const existingUser = await User.findOne({ email })
       if (!existingUser) {
-        throw new BadRequestError("Email doesn't exist", '4')
+        console.log("Email doesn't exist", '4')
       }
 
       const passwordMatch = await Password.compare(existingUser.password, password)
 
       if (!passwordMatch) {
-        throw new BadRequestError('Invalid credentials', '4')
+        console.log('Invalid credentials', '4')
       }
       const userJwt = jwt.sign({
         id: existingUser.id,
@@ -47,7 +48,7 @@ router.post('/users/signin',
       }
       res.status(200).send(new RequestHandler(user))
     } catch (e) {
-      throw new BadRequestError(e.message, '-')
+      console.log(e.message)
     }
   })
 

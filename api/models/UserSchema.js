@@ -3,17 +3,8 @@ const messages = require('./MessageSchema');
 const uuid = require('uuid');
 
 const userSchema = new mongoose.Schema({
-  id: {
-    type: uuid
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  }
+  email: String,
+  password: String
 },
   {
    toJSON:{
