@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const messages = require('./MessageSchema');
+const message = require('./MessageSchema')
 const uuid = require('uuid');
 
 const userSchema = new mongoose.Schema({
   email: String,
-  password: String
+  password: String,
+  messages: [message]
 },
   {
    toJSON:{
