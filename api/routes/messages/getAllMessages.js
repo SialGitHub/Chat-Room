@@ -5,8 +5,9 @@ const express = require('express')
 
 const requestHandler = require('../../utils/requestHandler');
 
-const User = require('../../models/UserSchema');
+const Messages = require('../../models/MessagesSchema');
 const Message = require('../../models/MessageSchema');
+const User = require('../../models/UserSchema');
 
 const router = express.Router()
 
